@@ -20,9 +20,9 @@ class Route {
     resolve(req, res) {
       
         const { url, method } = req;
-        // Crée une clé de route en concaténant la méthode HTTP et l'URL
+        //clé de route en concaténant la méthode HTTP et l'URL
         const routeKey = `${method} ${url}`;
-        // Récupère le gestionnaire de route correspondant à la clé
+        //route correspondant à la clé
         const handler = this.routes[routeKey];
 
         if (!handler) {
@@ -32,7 +32,6 @@ class Route {
             return;
         }
 
-        // Exécute le gestionnaire de route trouvé
         handler(req, res);
     }
 }
@@ -40,20 +39,20 @@ class Route {
 // Créez une instance de la classe Route
 const route = new Route();
 
-// Définition des routes
-// Associez les chemins aux gestionnaires de contrôleurs correspondants
+// Définition des routes get
 route.get("/store", homeController.store);
 route.get("/", homeController.index);
-// Route statique sans contrôleur spécifique
 route.get("/about", (req, res) => {
     res.end("This is about page");
 });
 
+// Définition des routes path
+
 route.post("/store", homeController.store);
 route.post("/", homeController.index);
-// Route statique sans contrôleur spécifique
 route.post("/about", (req, res) => {
     res.end("This is about page");
 });
-// Exportez l'instance de la classe Route
+
+
 module.exports = route;
